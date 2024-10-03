@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Flashcards</title>
+<style>
+#card{
+	display:inline;
+    padding:50px;
+    position:relative;
+    top:100px;
+    border-style: solid;
+    font-size:50px;
+}
+</style>
+<script>
+const qs = [];
+const as = [];
+var i=0;
+var click=0;
+function add(){
+	qs.push(document.getElementById("q").value);
+    as.push(document.getElementById("a").value);
+	document.getElementById("q").value = '';
+    document.getElementById("a").value = '';
+
+}
+function view(){
+
+	document.getElementById('card').innerText = qs[i];
+    if (click==1){
+    	document.getElementById('card').innerText = as[i];
+        click=0;
+        document.getElementById('try').innerText = "try flashcards";
+        i+=1;
+    } else {
+    	document.getElementById('try').innerText = "reveal answer";
+    	click=1;
+        
+    }
+	
+    if (i+1>as.length){
+    	i=0;
+    }
+    
+}
+</script>
+</head>
+<body>
+<h1>This is a flashcard system</h1>
+<h3>Type your question and then type your answer to add to the collection of flashcards</h3>
+<h3>Click "try flashcards" to see the question and click "reveal answer" to see the answer</h3>
+<input id="q" style="display:block;" value="" placeholder="add the question here" type="text">
+<input id="a" style="display:block;" val="" placeholder="add the answer here" type="text">
+
+<button onclick="add();">add flashcard</button>
+<p></p>
+<button id="try" onclick="view();">try flashcard</button>
+<p></p>
+<div id='card'></div>
+
+</body>
+</html>
+
+
